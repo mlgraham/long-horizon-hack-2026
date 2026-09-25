@@ -330,3 +330,8 @@ Append-only. Every heading is stamped from the clock in the command that writes 
 - First attempt failed with 'remote end hung up' on the 8 MB push; succeeded after raising http.postBuffer.
 - Public: https://github.com/mlgraham/long-horizon-hack-2026 ; video: https://github.com/mlgraham/long-horizon-hack-2026/raw/main/demo/ledger-demo.mp4
 - Next: the operator submits the form (docs/submission.md) before 16:30.
+
+### 2026-09-25 14:33 PDT — submission form filled at 14:33 PDT, not submitted; the operator presses the button
+
+- Filled: project name, one-sentence description, 1357-char description, team size 1, tools (Liquid AI, Nimble, Black Forest Labs, RawTree, Claude Code: '5 selected'), working URL, video URL, repo URL, screenshot, architecture, setup, lessons, additional links.
+- docs/submission.md records the same text. Deadline on the form: 4:30 PM PT.
