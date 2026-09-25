@@ -324,3 +324,9 @@ Append-only. Every heading is stamped from the clock in the command that writes 
 
 - 69 files, about 8 MB; tests 55 passed; secret and path scans clean; .env, the WAV, the TTS cache and derived board files are ignored.
 - Video: demo/ledger-demo.mp4 (161.4 s). Submission text: docs/submission.md.
+
+### 2026-09-25 14:23 PDT — pushed: commit bce8cb1 on main at 14:23 PDT; remote head matches local
+
+- First attempt failed with 'remote end hung up' on the 8 MB push; succeeded after raising http.postBuffer.
+- Public: https://github.com/mlgraham/long-horizon-hack-2026 ; video: https://github.com/mlgraham/long-horizon-hack-2026/raw/main/demo/ledger-demo.mp4
+- Next: the operator submits the form (docs/submission.md) before 16:30.
