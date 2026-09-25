@@ -1,0 +1,154 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledger One-Pager</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #FBFAF8; --ink: #1E232B; --ink-2: #5B6573; --hair: #D8DDE3;
+    --accent: #286B70; --accent-soft: #E3EEEE; --pass: #2F7A45; --fail: #A9432F; --mono-bg: #F1F3F5;
+    --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --sans: "Source Sans 3", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { color-scheme: dark;
+      --paper: #141821; --ink: #E4E7EB; --ink-2: #A3ACB8; --hair: #2C333E;
+      --accent: #73B7BC; --accent-soft: #1C2B2D; --pass: #6CBF82; --fail: #E0846F; --mono-bg: #1C212B; }
+  }
+  :root[data-theme="dark"] { color-scheme: dark;
+    --paper: #141821; --ink: #E4E7EB; --ink-2: #A3ACB8; --hair: #2C333E;
+    --accent: #73B7BC; --accent-soft: #1C2B2D; --pass: #6CBF82; --fail: #E0846F; --mono-bg: #1C212B; }
+
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.45;
+         margin: 0; padding-inline: 16px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 780px; margin: 0 auto; padding-block: 28px 40px; }
+
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 8px; }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: 34px; line-height: 1.08; letter-spacing: -0.01em; margin: 0 0 8px; text-wrap: balance; }
+  h1 .dash { color: var(--accent); }
+  .dek { font-family: var(--serif); font-size: 18px; line-height: 1.35; color: var(--ink-2); margin: 0 0 10px; font-style: italic; text-wrap: balance; }
+  .byline { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); margin: 0 0 4px; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); padding-block: 7px; display: flex; flex-wrap: wrap; gap: 4px 18px; }
+  .byline .pass { color: var(--pass); font-weight: 500; }
+
+  h2 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin: 16px 0 7px; }
+  p { margin: 0 0 8px; }
+  code { font-family: var(--mono); font-size: 0.86em; background: var(--mono-bg); padding: 1px 4px; border-radius: 3px; }
+  strong { font-weight: 600; }
+
+  .verbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px 14px; }
+  .verbs div { border-top: 2px solid var(--accent); padding-top: 5px; font-size: 13.5px; line-height: 1.35; }
+  .verbs b { display: block; font-family: var(--mono); font-size: 12.5px; font-weight: 500; margin-bottom: 2px; }
+
+  .split { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .split div { border: 1.5px solid var(--pass); border-radius: 6px; padding: 8px 10px 6px; font-size: 13px; line-height: 1.4; }
+  .split div:nth-child(2) { border-color: var(--accent); }
+  .split div:nth-child(3) { border-color: var(--fail); border-style: dashed; }
+  .split b { display: block; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; margin-bottom: 4px; color: var(--pass); }
+  .split div:nth-child(2) b { color: var(--accent); } .split div:nth-child(3) b { color: var(--fail); }
+  .split ul { padding-left: 15px; margin: 0 0 4px; } .split li { margin-bottom: 1px; } .split li::marker { color: var(--ink-2); }
+  .split i { color: var(--ink-2); font-size: 12px; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 13px; line-height: 1.35; }
+  th, td { text-align: left; vertical-align: top; padding: 5px 10px 5px 0; border-bottom: 1px solid var(--hair); }
+  th { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); font-weight: 500; }
+  td.mono { font-family: var(--mono); font-size: 12px; white-space: nowrap; }
+  td.sp { font-weight: 600; white-space: nowrap; }
+  .pass { color: var(--pass); font-weight: 600; }
+  .wait { color: var(--ink-2); font-style: italic; }
+  .tablewrap { overflow-x: auto; }
+  .note { font-size: 12.5px; color: var(--ink-2); margin-top: 6px; }
+
+  .demo { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; counter-reset: step; }
+  .demo li { counter-increment: step; background: var(--accent-soft); border-radius: 6px; padding: 8px 10px; font-size: 13px; line-height: 1.38; }
+  .demo li::before { content: counter(step); display: block; font-family: var(--serif); font-size: 22px; line-height: 1; color: var(--accent); margin-bottom: 4px; font-weight: 500; }
+
+  .timeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 16px; }
+  .timeline div { border-top: 3px solid var(--accent); padding-top: 5px; font-size: 12.5px; line-height: 1.3; }
+  .timeline div.bad { border-top-color: var(--fail); }
+  .timeline b { display: block; font-family: var(--mono); font-size: 11px; color: var(--accent); font-weight: 500; }
+  .timeline div.bad b { color: var(--fail); }
+  .foot { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--hair); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; font-family: var(--mono); font-size: 11px; color: var(--ink-2); }
+  .close { font-family: var(--serif); font-size: 15px; font-style: italic; color: var(--ink); }
+
+  @media (max-width: 560px) {
+    h1 { font-size: 28px; } .dek { font-size: 16px; }
+    .verbs { grid-template-columns: 1fr 1fr; }
+    .split, .demo { grid-template-columns: 1fr; }
+    .timeline { grid-template-columns: 1fr 1fr; }
+  }
+
+  @page { size: Letter; margin: 0.4in 0.45in; }
+  @media print {
+    body { font-size: 8.6pt; line-height: 1.34; padding-inline: 0; background: #FBFAF8; color: #1E232B; }
+    .page { max-width: none; padding-block: 0; }
+    h1 { font-size: 19pt; margin-bottom: 4pt; } .dek { font-size: 10.6pt; margin-bottom: 6pt; } .eyebrow, .byline { font-size: 7.4pt; }
+    .eyebrow { margin-bottom: 4pt; } .byline { padding-block: 4pt; }
+    h2 { font-size: 7.4pt; margin: 9pt 0 4pt; }
+    .verbs { gap: 5pt 10pt; } .verbs div { font-size: 8.2pt; padding-top: 3pt; } .verbs b { font-size: 7.9pt; }
+    .split { gap: 7pt; } .split div { font-size: 8pt; padding: 5pt 7pt 3pt; } .split b { font-size: 6.9pt; margin-bottom: 2pt; } .split i { font-size: 7.6pt; }
+    table { font-size: 8.1pt; } th { font-size: 6.9pt; } th, td { padding: 3pt 8pt 3pt 0; } td.mono { font-size: 7.6pt; } .note { font-size: 7.8pt; margin-top: 4pt; margin-bottom: 0; }
+    .demo { gap: 7pt; } .demo li { font-size: 8pt; padding: 5pt 7pt; } .demo li::before { font-size: 13pt; margin-bottom: 2pt; }
+    .timeline { margin-top: 10pt; gap: 6pt; } .timeline div { font-size: 8pt; padding-top: 3pt; } .timeline b { font-size: 7.3pt; }
+    .foot { font-size: 7.3pt; margin-top: 7pt; padding-top: 5pt; } .close { font-size: 9.6pt; }
+    .verbs, .split, .demo, .timeline, tr { break-inside: avoid; }
+  }
+</style>
+
+<div class="page">
+  <p class="eyebrow">Long Horizon Agents Hackathon · AWS Builder Loft, San Francisco · 2026-09-25</p>
+  <h1>ledger <span class="dash">—</span> resumable agent state that survives a change of host</h1>
+  <p class="dek">The agent's history is disposable; the state that matters is a dated, falsifiable ledger in the repo that any fresh session, on any host or model, can read in two minutes.</p>
+  <p class="byline"><span>Michael Graham</span><span>repo: mlgraham/long-horizon-hack-2026</span><span class="pass">All six gates passed by 11:45 PDT: core, RawTree, second host, Nimble, Liquid, FLUX · 54 tests passing</span></p>
+
+  <h2>The verbs · one small CLI, plain Markdown under <code>.ledger/</code></h2>
+  <div class="verbs">
+    <div><b>ledger note "…"</b>Appends an entry stamped by the system clock, never by an argument.</div>
+    <div><b>ledger gate add / pass / fail</b>Pre-registers a threshold, deadline, owner and kill criterion, then records what was measured.</div>
+    <div><b>ledger obligation add</b>Records an unproved claim and whether its hypothesis can be met at all.</div>
+    <div><b>ledger pause</b>Writes the ⏸ entry: what to resume, caps, open rulings, first file to read.</div>
+    <div><b>ledger resume</b>Prints the two-minute brief, the only thing a new host needs in context.</div>
+    <div><b>ledger watch / tick</b>One loop: fetch the topic, distill a delta, note it, discard the raw page.</div>
+  </div>
+  <p class="note">Every verb also posts one event: <code>ts, kind, host, model, gate, text, tokens_in, tokens_out, bytes_discarded</code>. No database is needed to run.</p>
+
+  <h2>The split the brief asks for</h2>
+  <div class="split">
+    <div><b>Persists · in git</b>
+      <ul><li><code>STATUS.md</code>, append-only, clock-stamped</li><li><code>gates.md</code> with kill criteria</li><li><code>obligations.md</code></li><li><code>pause.md</code>, the latest ⏸ entry</li><li><code>covers/</code>, one image per pause</li></ul>
+      <i>dated, owned, falsifiable</i></div>
+    <div><b>Derived · on demand</b>
+      <ul><li>the resume brief, rebuilt from files</li><li>RawTree "what changed last hour"</li><li>the board, rendered from one query</li><li>each tick's delta from the last state</li></ul>
+      <i>measured, never remembered</i></div>
+    <div><b>Discarded · every tick</b>
+      <ul><li>session transcripts</li><li>raw pages fetched by Nimble, counted as bytes discarded</li><li>the old host's context window</li></ul>
+      <i>history, the thing that rots</i></div>
+  </div>
+
+  <h2>Four sponsors in the loop · each behind a pre-registered gate</h2>
+  <div class="tablewrap"><table>
+    <tr><th>Sponsor</th><th>Role in the loop</th><th>Gate · pass by</th><th>Now</th></tr>
+    <tr><td class="sp">RawTree</td><td>Mirrors every event as it is, no schema step. "What changed in the last hour" and the board are two SQL queries a judge can paste.</td><td class="mono">H2 · 13:30</td><td class="pass">passed</td></tr>
+    <tr><td class="sp">Nimble</td><td>Fetches the watched topic on every tick; only the dated delta is kept.</td><td class="mono">H4 · 14:30</td><td class="pass">passed</td></tr>
+    <tr><td class="sp">Liquid AI</td><td>Distills raw page plus last state into a delta of three lines at most, on every tick. LFM2.5-1.2B runs locally through Ollama, so the raw page never reaches a frontier model.</td><td class="mono">H5 · 14:30</td><td class="pass">passed: 4 KB page → 3 lines in 8–13 s</td></tr>
+    <tr><td class="sp">Black Forest Labs</td><td>On <code>pause</code>, a FLUX cover image from the day's digest lands in <code>.ledger/covers/</code>.</td><td class="mono">H6 · 15:30</td><td class="pass">passed</td></tr>
+  </table></div>
+  <p class="note">The second host is <code>hosts/claude_code.sh</code>: a fresh headless Claude Code session whose whole context is <code>ledger resume</code> (24 lines in the dry run). It read three files, wrote the summary and left three clock-stamped notes. <code>hosts/loop.py</code> offers the same loop on Ollama or the Anthropic API. AWS Bedrock was dropped because no AWS account is available today. A failed gate drops that sponsor from the pitch, never the core.</p>
+
+  <h2>The 3-minute demo</h2>
+  <ol class="demo">
+    <li><strong>Watch live.</strong> <code>ledger watch</code> pulls a real topic through Nimble; the Liquid delta lands in <code>STATUS.md</code> and the raw page's bytes are discarded.</li>
+    <li><strong>Kill mid-task.</strong> Stop under Claude Code with the tests failing. Show the ⏸ pause entry and its FLUX cover.</li>
+    <li><strong>Resume elsewhere.</strong> A fresh headless session gets only <code>ledger resume</code>, fixes the code, runs the tests until green and flips the gate with the line it measured.</li>
+    <li><strong>Ask what changed.</strong> One SQL query in RawTree returns the last hour of events; the board is rendered from it.</li>
+  </ol>
+
+  <div class="timeline">
+    <div><b>11:00</b>Kickoff and hack</div>
+    <div><b>11:30</b>Submissions open</div>
+    <div class="bad"><b>16:30</b>Submission deadline</div>
+    <div><b>17:00</b>Finalist demos</div>
+    <div><b>19:00</b>Awards and closing</div>
+  </div>
+  <div class="foot"><span class="close">The history is not the agent. The ledger is.</span><span>github.com/mlgraham/long-horizon-hack-2026 · Michael Graham · times PT</span></div>
+</div>

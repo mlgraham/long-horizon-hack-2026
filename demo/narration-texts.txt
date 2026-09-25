@@ -1,0 +1,23 @@
+[0.3s] An agent's transcript is disposable, so we start with nothing but an empty repo and a dot-ledger folder of plain Markdown.
+
+[0.5s] This is ledger. Nothing you see is a transcript: the whole state of the work lives in a few Markdown files. We will kill the agent and pick the work up somewhere else.
+
+[20.1s] Each tick pulls live web results for the topic through Nimble, a Liquid model on this laptop keeps at most three new lines, and the raw pages, 44,897 bytes of them, are thrown away.
+
+[26.2s] Each tick takes about twenty-five seconds on this laptop, trimmed here: Nimble fetches live results for the topic, then a one-point-two-billion-parameter Liquid model reads forty-five kilobytes and writes at most three lines.
+
+[36.4s] The second and third ticks come back as no change. That is the ledger deciding, not the model: a line already in the state is dropped before it is written.
+
+[46.6s] Nothing raw is kept. The page is gone the moment the delta is written; only the byte count survives, as an event.
+
+[52.5s] One more tick, and then we stop the agent mid-task.
+
+[71.1s] The plan is not a paragraph in a transcript. The spec is a gate with a threshold, the tests are its measurement, and the first implementation is wrong on purpose. Three failures, recorded.
+
+[84.3s] We stop mid-task. What survives is one pause entry saying where to pick up, with a FLUX cover drawn from the day's headlines, and this brief: the pause, the open gate, the last entries and the rules, under sixty lines. The transcript is gone.
+
+[102.8s] A brand-new headless session gets that brief and nothing else. It reads the tests, fixes the code, runs pie-test, and flips the gate with the exact line it measured. Nobody touched the keyboard. In our gate run, a 24-line brief was its only context.
+
+[119.5s] It is running pie-test now. When the tests pass, it flips the gate itself, with the exact line it measured, and writes its own notes.
+
+[137.8s] Here is the split the brief asks for: 3,735 bytes persisted in the ledger, 134,691 raw bytes discarded over 3 ticks. Every verb was one event, so what happened is a query, read back here from Raw Tree. The history is not the agent. The ledger is.

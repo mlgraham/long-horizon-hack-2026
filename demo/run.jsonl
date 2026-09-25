@@ -1,0 +1,124 @@
+{"t": 0.48, "line": "", "bold": false}
+{"t": 0.48, "line": "== 1. A scratch repo and a fresh ledger ==", "bold": true}
+{"t": 1.13, "line": "/private/tmp/ledger-demo/.ledger", "bold": false}
+{"t": 1.15, "line": "events.jsonl", "bold": false}
+{"t": 1.15, "line": "gates.md", "bold": false}
+{"t": 1.15, "line": "id", "bold": false}
+{"t": 1.15, "line": "obligations.md", "bold": false}
+{"t": 1.15, "line": "STATUS.md", "bold": false}
+{"t": 23.47, "line": "", "bold": false}
+{"t": 23.47, "line": "== 2. Observe: three ticks pull live web data (Nimble search, or the URL without a key), Liquid distills, raw is discarded ==", "bold": true}
+{"t": 23.47, "line": "-- tick 1", "bold": false}
+{"t": 48.77, "line": "2026-09-25 14:03 PDT — watch AI agents news today: Agentic AI is shifting focus to specific business areas for better ROI.", "bold": false}
+{"t": 48.77, "line": "- Agentic AI is shifting focus to specific business areas for better ROI.", "bold": false}
+{"t": 48.77, "line": "- CrowdStrike is enhancing its AI security suite with agent-specific identity.", "bold": false}
+{"t": 48.77, "line": "- Experts stress the need for a neutral trust bureau to manage agent authority.", "bold": false}
+{"t": 48.77, "line": "[44897 bytes discarded · hf.co/LiquidAI/LFM2.5-1.2B-Instruct-GGUF · 24.9s]", "bold": false}
+{"t": 48.79, "line": "-- tick 2", "bold": false}
+{"t": 78.81, "line": "2026-09-25 14:04 PDT — watch AI agents news today: no change", "bold": false}
+{"t": 78.81, "line": "- no change", "bold": false}
+{"t": 78.81, "line": "[44897 bytes discarded · hf.co/LiquidAI/LFM2.5-1.2B-Instruct-GGUF · 29.3s]", "bold": false}
+{"t": 78.83, "line": "-- tick 3", "bold": false}
+{"t": 101.89, "line": "2026-09-25 14:04 PDT — watch AI agents news today: no change", "bold": false}
+{"t": 101.89, "line": "- no change", "bold": false}
+{"t": 101.89, "line": "[44897 bytes discarded · hf.co/LiquidAI/LFM2.5-1.2B-Instruct-GGUF · 22.2s]", "bold": false}
+{"t": 102.03, "line": "", "bold": false}
+{"t": 102.03, "line": "== 3. Plan: the spec is a gate, the tests are its measurement, the first implementation is wrong ==", "bold": true}
+{"t": 102.59, "line": "gate build open, by this session", "bold": false}
+{"t": 104.1, "line": "2026-09-25 14:04 PDT — spec written as gate build; tests/test_slug.py written; slug.py stub returns its input", "bold": false}
+{"t": 104.12, "line": "-- pytest before the fix", "bold": false}
+{"t": 104.63, "line": "3 failed in 0.05s", "bold": false}
+{"t": 111.9, "line": "", "bold": false}
+{"t": 111.9, "line": "== 4. Pause mid-task, then the brief: everything the next host will know ==", "bold": true}
+{"t": 112.74, "line": "⏸ 2026-09-25 14:04 PDT", "bold": false}
+{"t": 127.33, "line": "cover: /private/tmp/ledger-demo/.ledger/covers/2026-09-25_1404_PDT.jpg", "bold": false}
+{"t": 127.36, "line": "2026-09-25_1404_PDT.jpg", "bold": false}
+{"t": 127.47, "line": "# Resume brief — ledger-demo — read 2026-09-25 14:04 PDT on claude-code", "bold": false}
+{"t": 127.47, "line": "7 entries; first 2026-09-25 14:02 PDT, last 2026-09-25 14:04 PDT.", "bold": false}
+{"t": 127.47, "line": "", "bold": false}
+{"t": 127.47, "line": "## Paused 2026-09-25 14:04 PDT — resume here", "bold": false}
+{"t": 127.47, "line": "1. Fix slug.py so that 'python -m pytest -q tests' passes; iterate until green; then run: ledger gate pass build --measured \"<the exact pytest summary line>\"", "bold": false}
+{"t": 127.47, "line": "2. Caps: edit only slug.py; do not touch the tests", "bold": false}
+{"t": 127.47, "line": "3. Open rulings: none", "bold": false}
+{"t": 127.47, "line": "4. First file to read: tests/test_slug.py", "bold": false}
+{"t": 127.47, "line": "", "bold": false}
+{"t": 127.47, "line": "Open gates: build · open obligations: none · entries: 6", "bold": false}
+{"t": 127.47, "line": "", "bold": false}
+{"t": 127.47, "line": "![cover](covers/2026-09-25_1404_PDT.jpg)", "bold": false}
+{"t": 127.47, "line": "", "bold": false}
+{"t": 127.47, "line": "## Gates: 1 open of 1", "bold": false}
+{"t": 127.47, "line": "- build [open] python -m pytest -q tests passes all 3 tests in tests/test_… by this session", "bold": false}
+{"t": 127.47, "line": "", "bold": false}
+{"t": 127.47, "line": "## Obligations: 0 open of 0", "bold": false}
+{"t": 127.47, "line": "", "bold": false}
+{"t": 127.47, "line": "## Last 5 entries", "bold": false}
+{"t": 127.47, "line": "- 2026-09-25 14:04 PDT — watch AI agents news today: no change", "bold": false}
+{"t": 127.47, "line": "- 2026-09-25 14:04 PDT — watch AI agents news today: no change", "bold": false}
+{"t": 127.47, "line": "- 2026-09-25 14:04 PDT — gate build registered", "bold": false}
+{"t": 127.47, "line": "- 2026-09-25 14:04 PDT — spec written as gate build; tests/test_slug.py written; slug.py stub returns its input", "bold": false}
+{"t": 127.47, "line": "- 2026-09-25 14:04 PDT — ⏸ resume here", "bold": false}
+{"t": 127.47, "line": "", "bold": false}
+{"t": 127.47, "line": "## Rules", "bold": false}
+{"t": 127.47, "line": "- Timestamps come from the clock, never typed. Append; never rewrite an entry.", "bold": false}
+{"t": 127.47, "line": "- Never cite a number you have not run. A failed gate is recorded, not argued.", "bold": false}
+{"t": 127.47, "line": "- Write `ledger note` as you go and `ledger pause` before stopping.", "bold": false}
+{"t": 130.38, "line": "", "bold": false}
+{"t": 130.38, "line": "== 5. Act, observe, self-correct: a different session, fed only by the brief, finishes the build cycle ==", "bold": true}
+{"t": 130.39, "line": "-- the second host is working; its ledger entries appear below as it writes them", "bold": false}
+{"t": 149.71, "line": "  ledger ← 2026-09-25 14:05 PDT — rewrote slugify in slug.py: lowercase, regex-split on [a-z0-9]+ runs, join with single hyphens; tests untouched", "bold": false}
+{"t": 155.82, "line": "  ledger ← 2026-09-25 14:05 PDT — ran python -m pytest -q tests: 3 passed in 0.01s", "bold": false}
+{"t": 158.87, "line": "  ledger ← 2026-09-25 14:05 PDT — gate build PASS", "bold": false}
+{"t": 165.05, "line": "  ledger ← 2026-09-25 14:05 PDT — done: slug.py fixed, pytest green (3 passed in 0.01s), gate build passed; only slug.py edited", "bold": false}
+{"t": 170.13, "line": "-- the second host's closing words", "bold": false}
+{"t": 170.13, "line": "Done. The build gate is passed and the ledger is up to date.", "bold": false}
+{"t": 170.13, "line": "", "bold": false}
+{"t": 170.13, "line": "**What I did**", "bold": false}
+{"t": 170.13, "line": "- Rewrote `slugify` in `slug.py` to lowercase the input, pull out runs of ASCII letters and digits with a regex, and join them with single hyphens. That handles punctuation, repeated spaces, doubled dashes, and leading or trailing whitespace in one step.", "bold": false}
+{"t": 170.13, "line": "- Left the tests untouched, per the cap.", "bold": false}
+{"t": 170.13, "line": "", "bold": false}
+{"t": 170.14, "line": "-- pytest after the second host", "bold": false}
+{"t": 170.45, "line": "3 passed in 0.01s", "bold": false}
+{"t": 170.45, "line": "-- gates", "bold": false}
+{"t": 170.55, "line": "build\tpass\tpython -m pytest -q tests passes all 3 tests in tests/test_slug.py\tby this session\t3 passed in 0.01s", "bold": false}
+{"t": 170.68, "line": "", "bold": false}
+{"t": 170.68, "line": "== 6. The record: what persisted, what was discarded, and the board as a query ==", "bold": true}
+{"t": 170.79, "line": "persisted  3735 bytes in STATUS.md, gates.md, obligations.md, pause.md; 11 entries", "bold": false}
+{"t": 170.79, "line": "derived    resume brief: 29 lines, 1421 bytes (computed now)", "bold": false}
+{"t": 170.79, "line": "discarded  134691 raw bytes over 3 ticks; tokens in 11702, tokens out 171 (all events)", "bold": false}
+{"t": 170.79, "line": "ratio      36.062 discarded bytes per persisted byte", "bold": false}
+{"t": 170.8, "line": "", "bold": false}
+{"t": 171.32, "line": "source: RawTree", "bold": false}
+{"t": 171.32, "line": "", "bold": false}
+{"t": 171.32, "line": "board, last 24h (one row per kind and host)", "bold": false}
+{"t": 171.32, "line": "kind       host                  events  bytes_discarded  tokens_in  tokens_out  last_ts", "bold": false}
+{"t": 171.32, "line": "---------  --------------------  ------  ---------------  ---------  ----------  -----------------------", "bold": false}
+{"t": 171.32, "line": "note       claude-code-headless  3       0                0          0           2026-09-25 14:05:37 PDT", "bold": false}
+{"t": 171.32, "line": "gate_pass  claude-code-headless  1       0                0          0           2026-09-25 14:05:30 PDT", "bold": false}
+{"t": 171.32, "line": "cover      claude-code           1       0                0          0           2026-09-25 14:04:58 PDT", "bold": false}
+{"t": 171.32, "line": "pause      claude-code           1       0                0          0           2026-09-25 14:04:44 PDT", "bold": false}
+{"t": 171.32, "line": "note       claude-code           1       0                0          0           2026-09-25 14:04:35 PDT", "bold": false}
+{"t": 171.32, "line": "gate_add   claude-code           1       0                0          0           2026-09-25 14:04:34 PDT", "bold": false}
+{"t": 171.32, "line": "tick       claude-code           3       134691           11702      171         2026-09-25 14:04:33 PDT", "bold": false}
+{"t": 171.32, "line": "init       claude-code           1       0                0          0           2026-09-25 14:02:53 PDT", "bold": false}
+{"t": 171.32, "line": "", "bold": false}
+{"t": 171.32, "line": "what changed, last 1h (newest first)", "bold": false}
+{"t": 171.32, "line": "ts                       kind       host                  gate                  text", "bold": false}
+{"t": 171.32, "line": "-----------------------  ---------  --------------------  --------------------  ------------------------------------------------------------", "bold": false}
+{"t": 171.32, "line": "2026-09-25 14:05:37 PDT  note       claude-code-headless                        done: slug.py fixed, pytest green (3 passed in 0.01s), gate…", "bold": false}
+{"t": 171.32, "line": "2026-09-25 14:05:30 PDT  gate_pass  claude-code-headless  build                 3 passed in 0.01s", "bold": false}
+{"t": 171.32, "line": "2026-09-25 14:05:27 PDT  note       claude-code-headless                        ran python -m pytest -q tests: 3 passed in 0.01s", "bold": false}
+{"t": 171.32, "line": "2026-09-25 14:05:21 PDT  note       claude-code-headless                        rewrote slugify in slug.py: lowercase, regex-split on [a-z0…", "bold": false}
+{"t": 171.32, "line": "2026-09-25 14:04:58 PDT  cover      claude-code                                 Editorial illustration, muted paper tones, one teal accent,…", "bold": false}
+{"t": 171.32, "line": "2026-09-25 14:04:44 PDT  pause      claude-code                                 Fix slug.py so that 'python -m pytest -q tests' passes; ite…", "bold": false}
+{"t": 171.32, "line": "2026-09-25 14:04:35 PDT  note       claude-code                                 spec written as gate build; tests/test_slug.py written; slu…", "bold": false}
+{"t": 171.32, "line": "2026-09-25 14:04:34 PDT  gate_add   claude-code           build                 python -m pytest -q tests passes all 3 tests in tests/test_…", "bold": false}
+{"t": 171.32, "line": "2026-09-25 14:04:33 PDT  tick       claude-code           AI agents news today  - no change", "bold": false}
+{"t": 171.32, "line": "2026-09-25 14:04:10 PDT  tick       claude-code           AI agents news today  - no change", "bold": false}
+{"t": 171.32, "line": "2026-09-25 14:03:40 PDT  tick       claude-code           AI agents news today  - Agentic AI is shifting focus to specific business areas f…", "bold": false}
+{"t": 171.32, "line": "2026-09-25 14:02:53 PDT  init       claude-code                                 /private/tmp/ledger-demo/.ledger", "bold": false}
+{"t": 171.32, "line": "", "bold": false}
+{"t": 171.32, "line": "generated 2026-09-25 14:05 PDT", "bold": false}
+{"t": 171.32, "line": "wrote /private/tmp/ledger-demo/.ledger/board.html", "bold": false}
+{"t": 171.34, "line": "", "bold": false}
+{"t": 183.25, "line": "ledger: /tmp/ledger-demo/.ledger/STATUS.md   board: /tmp/ledger-demo/.ledger/board.html   steps: /tmp/ledger-demo/steps.tsv", "bold": false}
+{"t": 183.25, "line": "", "bold": false, "end": true}

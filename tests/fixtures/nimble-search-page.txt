@@ -1,0 +1,247 @@
+Documentation Index
+
+Fetch the complete documentation index at: /llms.txt
+
+Use this file to discover all available pages before exploring further.
+
+Skip to main content
+Nimble Docs home page
+Search...
+⌘K
+Ask Assistant
+⌘I
+Support
+Book a Demo
+Ask Nimble
+Home
+Documentation
+Integrations
+API Reference
+Changelog
+Ask Nimble
+Getting Started
+Overview
+Quickstart
+Search Tools
+Search
+Overview
+Best Practices
+How to Evaluate
+SERP
+NEW
+Web Search Agent
+Overview
+Quickstart
+Use Cases
+Efforts
+Trust
+Extraction Tools
+Extract
+Map
+Crawl
+Domain Knowledge
+NEW
+Media
+NEW
+Extract Template
+Extract Template
+Gallery
+Extract Jobs
+Overview
+Connections
+Guides
+Build Your First Agent
+Cookbooks
+SDKs
+CLI
+Python
+Node
+Go
+Admin
+Account Management
+Callbacks & Delivery
+Rate Limits
+Domain Health
+Pricing
+Compliance & Security
+Blogs
+Legacy Docs
+Proxy
+Residential
+Unlocker
+On this page
+Perform a Search with Nimble
+Search Depth
+Parameters
+Key Features
+Focus Modes
+Available Pre-defined Modes
+Example: Shopping search
+Custom Focus Mode
+Search vs other tools
+Use cases
+Next steps
+Search Tools
+Search
+Search
+Copy page
+
+Real-time web search that understands query intent and returns structured, agent-ready data
+
+Nimble Search reads the live web in real time and returns structured, agent-ready results. Every answer reflects what’s on the page right now, not a snapshot from earlier. Pick how much content comes back with search_depth.
+​
+Perform a Search with Nimble
+Get an API key from the Nimble Platform and install a client:
+Python
+TypeScript
+Go
+CLI
+pip install nimble_python
+
+1
+
+Make a search call
+
+Python
+TypeScript
+Go
+CLI
+cURL
+from nimble_python import Nimble
+
+nimble = Nimble(api_key="YOUR-API-KEY")
+
+result = nimble.search(
+    query="latest developments in AI agents 2026",
+    max_results=5
+)
+
+print(f"Found {len(result.results)} results")
+for item in result.results:
+    print(f"- {item.title}: {item.url}")
+
+2
+
+Read the response
+
+No search_depth was set, so this used the default, standard. Each result carries a title, URL, description, and metadata:
+{
+  "total_results": 5,
+  "results": [
+    {
+      "title": "AI agent trends 2026 report | Google Cloud",
+      "description": "Our new report reveals the 5 top trends in agentic AI that can help transform businesses, for 2026 and beyond...",
+      "url": "https://cloud.google.com/resources/content/ai-agent-trends-2026",
+      "content": "",
+      "metadata": {
+        "position": 1,
+        "entity_type": "SearchResult",
+        "country": "US",
+        "locale": "en"
+      }
+    },
+    {...}
+  ],
+  "request_id": "84f08ac1-bb5f-4b6f-8447-2d21cb930416"
+}
+
+​
+Search Depth
+The search_depth parameter controls how much content each search returns. Choose the right depth for your use case.
+Depth	Content Returned	Best For
+lite	Titles, URLs, snippets	Quick factual questions, high-volume monitoring, filtering
+standard (default)	Rich content	RAG, chatbots, real-time AI agent workflows
+Need the full page? Set full_content: true alongside either depth. It adds each result’s full scraped page content on top of its title, URL, and description, at higher cost.
+Search Depth Best Practices
+Learn when to use each depth mode, optimization tips, and cost strategies.
+​
+Parameters
+API Parameters
+For detailed parameter documentation, see the Search API Reference.
+​
+Key Features
+
+Full page content
+
+Time-based filtering
+
+Domain filtering
+
+Document type filtering
+
+​
+Focus Modes
+Focus modes route your searches to specialized sources optimized for different use cases, powered by Extract Templates that retrieve the most relevant results.
+​
+Available Pre-defined Modes
+Pre-defined focus modes automatically route your search to specialized Extract Templates based on your query type. Simply specify the mode that matches your use case.
+Focus Mode	Best For
+general (default)	General information, broad topics, web pages
+news	Current events, breaking stories, journalism
+coding	Code examples, debugging, API documentation
+academic	Scientific research, peer-reviewed studies
+shopping	Product comparison, pricing, merchant reviews
+social	Social content, influencers, trending topics
+geo	AI-generated answers, synthetic insights
+location	Places, businesses, geographic information
+Focus modes only work with search_depth: "lite".
+​
+Example: Shopping search
+Compare products across e-commerce platforms:
+Python
+TypeScript
+cURL
+from nimble_python import Nimble
+
+nimble = Nimble(api_key="YOUR-API-KEY")
+
+result = nimble.search(
+    query="wireless noise canceling headphones",
+    focus="shopping",
+    search_depth="lite",
+    max_results=20
+)
+
+print(result)
+
+​
+Custom Focus Mode
+For advanced use cases, you can explicitly specify which search agents to use by passing an array of subagent names to the focus parameter. This gives you full control over data sources and enables mixing agents from different focus modes.
+Example:
+{
+  "query": "best wireless headphones",
+  "focus": ["amazon_serp", "walmart_serp", "reddit_discover_posts"],
+  "search_depth": "lite",
+  "max_results": 10
+}
+
+Available Extract Templates
+View the complete list of Extract Templates you can use in custom focus modes.
+​
+Search vs other tools
+Need	Use
+Search web + extract content from results	Search
+Data from popular sites	Templates - maintained by Nimble
+Data from specific URLs	Extract
+URLs with context for AI planning	Map
+Data from entire website	Crawl
+​
+Use cases
+Research & Data Collection
+Gather comprehensive information on any topic from multiple sources automatically
+AI Agent Tasks
+Get quick, structured web results for your applications
+Content Monitoring
+Track mentions, news, or updates about specific topics, brands, or keywords
+Competitive Intelligence
+Monitor what’s being said about competitors or track industry trends
+​
+Next steps
+API Reference
+Explore endpoints, request parameters, and response schemas
+Web Tools Skill
+Add real-time web intelligence tools to Claude Code and other AI agents
+LangChain Integration
+Connect Nimble Search to your LangChain applications
+
+Was this page hel

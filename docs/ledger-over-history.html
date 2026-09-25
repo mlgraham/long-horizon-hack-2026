@@ -1,0 +1,220 @@
+<title>Ledger Over History</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #FBFAF8; --ink: #1E232B; --ink-2: #5B6573; --hair: #D8DDE3;
+    --accent: #286B70; --accent-soft: #E3EEEE; --pass: #2F7A45; --fail: #A9432F; --mono-bg: #F1F3F5;
+    --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --sans: "Source Sans 3", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { color-scheme: dark;
+      --paper: #141821; --ink: #E4E7EB; --ink-2: #A3ACB8; --hair: #2C333E;
+      --accent: #73B7BC; --accent-soft: #1C2B2D; --pass: #6CBF82; --fail: #E0846F; --mono-bg: #1C212B; }
+  }
+  :root[data-theme="dark"] { color-scheme: dark;
+    --paper: #141821; --ink: #E4E7EB; --ink-2: #A3ACB8; --hair: #2C333E;
+    --accent: #73B7BC; --accent-soft: #1C2B2D; --pass: #6CBF82; --fail: #E0846F; --mono-bg: #1C212B; }
+
+  body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.6;
+         margin: 0; padding-block: 0; padding-inline: 20px; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 640px; margin: 0 auto; padding-block: 36px 64px; }
+
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 14px; }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: 44px; line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 14px; text-wrap: balance; }
+  .dek { font-family: var(--serif); font-size: 21px; line-height: 1.4; color: var(--ink-2); margin: 0 0 20px; text-wrap: balance; font-style: italic; }
+  .byline { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); margin: 0; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); padding-block: 10px; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+
+  h2 { font-family: var(--serif); font-weight: 500; font-size: 29px; line-height: 1.15; margin: 44px 0 8px; text-wrap: balance; }
+  h2 .date { display: block; font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; font-weight: 500; }
+  h3 { font-family: var(--serif); font-weight: 600; font-size: 20px; line-height: 1.25; margin: 26px 0 6px; text-wrap: balance; }
+  p { margin: 0 0 15px; }
+  p.lead { font-size: 19px; line-height: 1.55; }
+  ul { margin: 0 0 15px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  li::marker { color: var(--accent); }
+  strong { font-weight: 600; }
+  code { font-family: var(--mono); font-size: 0.88em; background: var(--mono-bg); padding: 1px 5px; border-radius: 3px; }
+  pre { font-family: var(--mono); font-size: 13.5px; line-height: 1.5; background: var(--mono-bg); border-left: 3px solid var(--accent); padding: 12px 14px; overflow-x: auto; margin: 0 0 18px; white-space: pre-wrap; }
+  blockquote { margin: 0 0 18px; padding: 2px 0 2px 16px; border-left: 3px solid var(--accent); font-family: var(--serif); font-size: 19px; line-height: 1.45; }
+  blockquote cite { display: block; font-family: var(--mono); font-style: normal; font-size: 12px; color: var(--ink-2); margin-top: 6px; }
+
+  .fact { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; margin: 22px 0 26px; }
+  .fact div { border-top: 2px solid var(--accent); padding-top: 8px; }
+  .fact b { display: block; font-family: var(--serif); font-size: 30px; font-weight: 500; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .fact span { font-size: 14px; color: var(--ink-2); line-height: 1.35; display: block; }
+
+  .timeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 0 0 8px; }
+  .timeline div { border-top: 3px solid var(--accent); padding-top: 8px; font-size: 13.5px; line-height: 1.35; }
+  .timeline div.bad { border-top-color: var(--fail); } .timeline div.good { border-top-color: var(--pass); }
+  .timeline b { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; color: var(--accent); font-weight: 500; margin-bottom: 4px; }
+  .timeline div.bad b { color: var(--fail); } .timeline div.good b { color: var(--pass); }
+
+  .split { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 8px; }
+  .split div { border: 1.5px solid var(--pass); border-radius: 6px; padding: 12px 12px 8px; font-size: 14px; line-height: 1.45; }
+  .split div:nth-child(2) { border-color: var(--accent); }
+  .split div:nth-child(3) { border-color: var(--fail); border-style: dashed; }
+  .split b { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; margin-bottom: 8px; color: var(--pass); }
+  .split div:nth-child(2) b { color: var(--accent); } .split div:nth-child(3) b { color: var(--fail); }
+  .split ul { padding-left: 16px; margin: 0 0 8px; } .split li { margin-bottom: 3px; }
+  .split i { color: var(--ink-2); font-size: 13px; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 15px; line-height: 1.4; margin: 0 0 20px; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--hair); }
+  th { font-family: var(--mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); font-weight: 500; }
+  td.mono { font-family: var(--mono); font-size: 13.5px; }
+  .pass { color: var(--pass); font-weight: 600; } .fail { color: var(--fail); font-weight: 600; }
+  .tablewrap { overflow-x: auto; }
+
+  figure { margin: 22px 0 24px; }
+  figcaption { font-size: 14px; color: var(--ink-2); margin-top: 8px; line-height: 1.4; }
+
+  .card { border: 1px solid transparent; background: var(--accent-soft); border-radius: 6px; padding: 16px 18px; margin: 0 0 18px; }
+  .card h3 { margin-top: 0; }
+  .card .tag { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 4px; }
+  .close { margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--hair); font-family: var(--serif); font-size: 19px; line-height: 1.45; }
+
+  @media (max-width: 520px) {
+    body { font-size: 16.5px; }
+    h1 { font-size: 36px; } h2 { font-size: 26px; } .dek { font-size: 19px; }
+    .timeline { grid-template-columns: 1fr 1fr; }
+    .split { grid-template-columns: 1fr; }
+  }
+
+  @page { size: 6in 9in; margin: 0.6in 0.55in 0.7in 0.55in; }
+  @media print {
+    body { font-size: 10.6pt; line-height: 1.58; padding-inline: 0; background: #FBFAF8; color: #1E232B; }
+    .page { max-width: none; padding-block: 0; }
+    h1 { font-size: 30pt; } .dek { font-size: 14pt; } h2 { font-size: 19pt; margin-top: 24pt; } h3 { font-size: 13pt; }
+    p.lead { font-size: 11.6pt; } blockquote { font-size: 12pt; } .close { font-size: 12pt; }
+    .fact { gap: 10px 16px; margin: 12pt 0 14pt; } .fact b { font-size: 20pt; } .fact span { font-size: 9pt; }
+    table { font-size: 9.4pt; } td.mono { font-size: 8.8pt; } pre { font-size: 8.6pt; }
+    figcaption { font-size: 9pt; } .byline { font-size: 8.2pt; } .eyebrow { font-size: 8pt; }
+    .timeline { gap: 8px; } .timeline div { font-size: 8.4pt; padding-top: 5px; } .timeline b { font-size: 7.4pt; }
+    .split { gap: 8px; } .split div { font-size: 8.6pt; padding: 8px 9px 4px; } .split b { font-size: 7.4pt; } .split i { font-size: 8pt; }
+    h2, h3 { break-after: avoid; }
+    figure, tr, li, blockquote, pre, .fact, .timeline, .split { break-inside: avoid; }
+    .break { break-before: page; }
+  }
+</style>
+
+<div class="page">
+  <p class="eyebrow">Long Horizon Agents Hackathon · AWS Builder Loft, San Francisco · 2026-09-25</p>
+  <h1>Ledger Over History</h1>
+  <p class="dek">How one operator and a swarm of agents kept multi-week projects honest, and what to build in five hours today.</p>
+  <p class="byline"><span>Michael Graham</span><span>one private repository, Dec 2025 → Sep 2026</span></p>
+
+  <h2>For the judge, in one paragraph</h2>
+  <p class="lead">The brief says long-horizon agents accumulate observations until their own state stops being reliable. I hit that wall ten months ago. Everything below comes from one repository: a message bus and a memory server I wrote in December, a product the swarm built and then measured to death in July, and a chain of formal-mathematics projects that have run for weeks at a time on the harness's own built-in tools. The answer that survived is simple. The agent's history is disposable. The state that matters lives in dated, owned, falsifiable files that a fresh session can read in two minutes. Nothing on the status board is remembered. It is measured again from disk on every tick.</p>
+
+  <div class="fact">
+    <div><b>3,760</b><span>commits since 2025-12-05, 2,451 of them this September</span></div>
+    <div><b>9,121</b><span>lines in the current gate's ledger, every heading stamped by the clock</span></div>
+    <div><b>68</b><span>memories the agent wrote for itself: 40 feedback, 11 project, 17 reference</span></div>
+    <div><b>927 MB</b><span>of session transcripts, all of it disposable</span></div>
+  </div>
+
+  <figure>
+    <div class="timeline">
+      <div><b>DEC 2025</b>Custom bus and five-layer memory</div>
+      <div><b>FEB 2026</b>Harness ships agent teams built in</div>
+      <div class="bad"><b>JUL 31 2026</b>The rule fires: 0 of 25, engineering stops</div>
+      <div><b>AUG 2026</b>Gates, ledgers, formal mathematics</div>
+      <div class="good"><b>SEP 2026</b>Board, memory files, built-in tools</div>
+    </div>
+    <figcaption>Ten months, one repository. Two leaderboard problems accepted (Aug 28, Sep 13), one Mathlib pull request merged (Sep 11), two gates closed on measurement. The commit volume arrives after the rule fires, once the record could be trusted.</figcaption>
+  </figure>
+
+  <h2><span class="date">Act I · December 2025</span>Building the plumbing myself</h2>
+  <p>The first commit is titled "Add multi-agent infrastructure with 5-layer memory system." I wrote two MCP servers. One wrapped a NATS JetStream bus with six channels so twelve agent roles in tmux panes could claim work, report progress and post blockers. The other was a memory server with five retention tiers, my first explicit answer to the brief's question of what persists and what can be discarded:</p>
+  <div class="tablewrap"><table>
+    <tr><th>Layer</th><th>Kept for</th><th>Holds</th></tr>
+    <tr><td>Core</td><td>forever</td><td>role, relationships, formative failures that shape behaviour</td></tr>
+    <tr><td>Long-term</td><td>forever</td><td>major insights, milestones</td></tr>
+    <tr><td>Medium-term</td><td>7 days</td><td>patterns noticed this week</td></tr>
+    <tr><td>Recent</td><td>24 hours</td><td>tasks, learnings, conversations</td></tr>
+    <tr><td>Compost</td><td>30 days</td><td>discarded ideas that might come back</td></tr>
+  </table></div>
+  <p>A nightly job promoted what mattered and cleared the rest. Agents called <code>recall_context</code> on spawn and got a summary, never a transcript. The swarm shipped a real product, CodeRocket, an AI CI/CD generator live on AWS with a marketplace plugin and an npm package. Two things went wrong slowly: the memory files churned as commits nobody read, and as models improved the project manager started writing code itself, bypassing the specialist roles. The deeper failure was not in the plumbing at all.</p>
+
+  <h2><span class="date">Act II · July 29 to 31, 2026</span>The record lied, and a rule fixed it</h2>
+  <p>A verified audit found four things labelled "shipped" that no user could reach. The marketplace pin sat three releases behind. The CI workflow had never run, because it lived in a subdirectory GitHub does not read. "1,541 tests" could not be reproduced from the tree. "Zero users" had been asserted by three consecutive assessments; the database held two.</p>
+  <p>This was not context overflow. It was the long-horizon failure in its purest form: <strong>state that cannot be checked accumulates as if it were true.</strong> Nothing in the record was dated, owned or falsifiable, so no observation could ever change the plan.</p>
+  <p>The fix was one governing rule with a date, a threshold, a measurable test, an owner and a kill criterion: twenty-five blind comparisons against a bare coding agent, thirteen wins to survive. The product won zero. Engineering stopped that afternoon; the infrastructure came down two days later. Three rules went into the standing instructions and are still there: <strong>"shipped" means a user can get it; never cite a number you have not run; one snapshot of a thing not happening is not evidence that someone decided against it.</strong></p>
+
+  <h2><span class="date">Act III · August to September 2026</span>Gates as the unit of horizon</h2>
+  <p>The same instrument was then pointed at every new idea before any code was written. Each candidate carries a table of hinges: decidable tests, one day each, with a pass condition and what a failure implies, written down before the work starts. Two rows from a gate opened on September 17:</p>
+  <div class="tablewrap"><table>
+    <tr><th>Hinge</th><th>Test</th><th>Pass</th><th>Fail means</th></tr>
+    <tr><td class="mono">H1</td><td>Re-index three modules from two dimensions to three</td><td class="pass">&lt; 20 % rewritten, builds green</td><td class="fail">kill</td></tr>
+    <tr><td class="mono">H2</td><td>One real cohomology cell, kernel-checked, timed on one real cell</td><td class="pass">≤ 10 min, ≤ 3.5 GB</td><td class="fail">73 cells over budget: kill or redesign</td></tr>
+  </table></div>
+  <p>The kill rule is pre-registered: any hinge fails, the gate closes, the measurement is recorded, nobody re-prices it by argument. The chain moved to a formal-mathematics leaderboard, where every claim is checked by the Lean 4 kernel. That is the ideal long-horizon testbed, because the machine cannot be talked into agreeing. Results so far: two problems accepted, the second a 176-module, 42,000-line proof built in one day by five workers under one coordinator; one Mathlib pull request merged; two gates closed on measurement; one open gate paused with a resume note.</p>
+
+  <h2><span class="date">Act IV · September 2026</span>Moving onto the built-in tools</h2>
+  <p>By February the harness shipped agent teams as a free built-in, and the plumbing stopped needing to be mine. What transferred was not the code but what the custom stack had taught me about state.</p>
+  <p><strong>Memory.</strong> The five-tier server gave way to the harness's memory directory, and the tiers became three kinds of file: feedback (a correction and why), project (a constraint not derivable from the code) and reference (a pointer). One fact per file, with a "Why" and a "How to apply". A one-line-per-file index loads at every session start; the files load only when relevant. The agent writes them itself after a correction. The newest one, verbatim:</p>
+  <pre>name: read-the-clock-dont-estimate
+On 2026-09-18 I stamped a run of STATUS.md entries "07:50" … "10:30 PDT"
+from my own sense of how long the work had taken. The real span was
+about 07:41–08:12; the board PNG filenames showed it.
+How to apply: every ledger heading gets its time from $(date "+%H:%M")
+inside the same command. Never type a clock time.</pre>
+  <p><strong>Bus.</strong> NATS channels and tmux nudges became the harness's subagent and messaging tools. The protocol rules moved with them, each learned on a dated day: a message to an idle agent is a task, so facts go in the ledger and the next brief; inboxes drain oldest-first, so one consolidated message per report; a route change needs an acknowledgement; a module wired into the build is frozen. The concurrency cap was cut from eight to two on measured cost.</p>
+  <p><strong>Hooks and ticks.</strong> A pre-tool hook hard-blocks writes to the human-owned site in every permission mode. A status-line hook writes usage figures to a JSON file every sixty seconds, and the board reads that file. A scheduled tick every thirty minutes renders the board to my phone. The session scratchpad is where anything I would regret losing goes to die; the board itself died there once and now lives in the repository.</p>
+
+  <h2>The three files that carry a project across days</h2>
+  <p><strong>The ledger.</strong> Each gate has a <code>STATUS.md</code>, append-only, every heading stamped from the clock in the same command that writes it. When I say "find a good place to pause everything," the agent writes a ⏸ entry naming the gate to resume, the subagent cap, the board tick to re-create, the rulings not yet acted on and the one log to read first. A session started a week later with an empty context is productive in minutes. Beside it sits an obligations ledger, every unproved claim with a column asking whether its hypothesis can be met at all:</p>
+  <blockquote>An obligation nobody can satisfy is worse than a gap, because it reads as closed.<cite>research/gate-l12/obligations.md, 2026-09-18</cite></blockquote>
+  <p><strong>The board.</strong> A 401-line script renders a phone-width image where every row is derived at render time: usage from the hook's JSON, each worker's headline from the last heading in its own report, build bars from measured line counts, machine load from the OS. The only hand-edited input is a small milestone config, and a milestone flips only after the coordinator's own build passes. The only typed text per tick is a one-sentence note.</p>
+  <p><strong>The instructions and the memories.</strong> <code>CLAUDE.md</code> carries the incident record with dates; the memory directory carries the corrections. The agent's working context is edited by the agent, reviewed by me, and versioned in git. Transcripts are never read back.</p>
+
+  <figure>
+    <div class="split">
+      <div><b>Persists · in git</b>
+        <ul><li>CLAUDE.md incident record</li><li>STATUS.md ledger per gate</li><li>obligations.md</li><li>roadmap and struck archive</li><li>memory directory, 68 files</li><li>board milestone config</li><li>gate specs with hinges</li><li>hooks in settings.json</li></ul>
+        <i>dated, owned, falsifiable</i></div>
+      <div><b>Derived · every tick</b>
+        <ul><li>board image to the phone</li><li>usage JSON from the hook</li><li>worker headline and detail</li><li>build bars from line counts</li><li>maintainer replies from GitHub</li><li>machine load</li><li>memory index at spawn</li></ul>
+        <i>measured, never remembered</i></div>
+      <div><b>Discarded · per session</b>
+        <ul><li>transcripts, 927 MB</li><li>subagent contexts</li><li>scratchpad files</li><li>tmux scrollback</li><li>NATS stream contents</li><li>the coordinator's sense of elapsed time</li></ul>
+        <i>history, the thing that rots</i></div>
+    </div>
+    <figcaption>The split the brief asks for. Anything on the right that turns out to matter is promoted to the left as a file with a date.</figcaption>
+  </figure>
+
+  <div class="tablewrap"><table>
+    <tr><th>The brief asks for</th><th>What this project does</th></tr>
+    <tr><td>Explicit mutable state, not growing histories</td><td>Ledgers and a milestone config, appended and flipped under rules; transcripts never read back</td></tr>
+    <tr><td>Agents that edit their own working context</td><td>Feedback memories written after a correction; pause entries written for the next session; instructions amended with dated incidents</td></tr>
+    <tr><td>A split between persist and discard</td><td>Five tiers in December, three memory kinds plus a scratchpad now; the board re-derives the rest</td></tr>
+    <tr><td>Reliability from minutes to days</td><td>Gates with pre-registered kill criteria bound each horizon; a project pauses and resumes from one file</td></tr>
+  </table></div>
+
+  <h2>What to build today</h2>
+  <p>Kickoff is at 11:00; submission opens at 11:30 and closes at 16:30. It needs a public GitHub repository, a short demo video with a shareable link, a description naming the tools used, and the team's names and emails. The project below is a slice of the model-host-agnostic harness I plan to build anyway, small enough for five hours, and backed by a pattern that has already run for weeks.</p>
+
+  <div class="card">
+    <p class="tag">The project</p>
+    <h3>ledger: resumable agent state that survives a change of host</h3>
+    <ul>
+      <li><strong>One small CLI, five verbs.</strong> <code>note</code> appends an entry stamped by the clock. <code>gate</code> registers a threshold, date, owner and kill criterion. <code>obligation</code> records an unproved claim and whether its hypothesis is satisfiable. <code>pause</code> writes the resume entry. <code>resume</code> prints the two-minute brief a fresh session needs.</li>
+      <li><strong>Storage is plain Markdown in the repo,</strong> so any host can read it: Claude Code, OpenCode, Codex, or a bare loop against a Bedrock model. No server, nothing to keep alive.</li>
+      <li><strong>The demo.</strong> Start a task under one host, kill it mid-task, resume on a different model on AWS Bedrock from the same ledger, and finish. Judges see explicit mutable state and host independence in one shot.</li>
+      <li><strong>Tinybird is the money.</strong> Best use of Tinybird pays $2,000, $1,000 and $500 in Amazon gift cards, judged by Tinybird's own people in the room. Every ledger append and every usage sample is also an event in Tinybird, so the board becomes one query, and "what changed in the last hour" is SQL a judge can run. This has to be central, not bolted on: the board reads from Tinybird, not from disk.</li>
+      <li><strong>Nimble if the resume demo works by 14:00.</strong> Best use of Nimble pays $1,000 cash plus credits. A <code>watch</code> verb that pulls a topic through Nimble every tick, keeps only dated deltas in the ledger and discards the raw pages is the brief's own diagram running live. Skip it otherwise.</li>
+      <li><strong>Leave the rest.</strong> Liquid AI's prize is a kit plus $250 and Black Forest Labs pays in credits. A Liquid model on the per-tick distillation step is a real efficiency argument if a teammate has spare time; a FLUX image is decoration.</li>
+    </ul>
+  </div>
+
+  <h3>The job angle</h3>
+  <ul>
+    <li><strong>Bring the record, not just the demo.</strong> The 9,121-line ledger, the pause entry, the board images and the accepted solves are multi-week evidence. A demo proves five hours; the record proves ten months.</li>
+    <li><strong>Lead with the July failure.</strong> "Nothing in the record was dated, owned or falsifiable" is a sentence a hiring manager can repeat to a colleague. Then ask the judges from OpenAI, Airbyte, LinkedIn and Induction Labs what their long-running agents fail on, and show the matching memory file.</li>
+    <li><strong>Ship the repo public before 16:30</strong> with a README written in the ledger's own format, and say plainly that the custom bus was overbuilt and the built-ins were enough by February.</li>
+  </ul>
+
+  <p class="close">The history is not the agent. The ledger is. Everything else can be thrown away and measured again tomorrow.</p>
+</div>
